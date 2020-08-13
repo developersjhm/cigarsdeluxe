@@ -31,7 +31,7 @@ if (!defined('_PS_VERSION_')) {
     exit;
 }
 
-class HhPayment extends PaymentModule
+class SunCashPayment extends PaymentModule
 {
     protected $_html;
 
