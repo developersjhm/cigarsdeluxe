@@ -12,6 +12,9 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FavoritesManager">
+    <favorites_list name="cigarsdeluxe" />
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
@@ -64,7 +67,7 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>hhpayment</find>
+      <find>suncash</find>
       <find>api</find>
     </findStrings>
   </component>
@@ -75,7 +78,7 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/views/templates/hook/displayPayment.tpl" />
-        <option value="$PROJECT_DIR$/hhpayment.php" />
+        <option value="$PROJECT_DIR$/Suncash.php" />
         <option value="$PROJECT_DIR$/controllers/front/api.php" />
         <option value="$PROJECT_DIR$/controllers/front/validation.php" />
       </list>
@@ -115,6 +118,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -182,7 +186,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hhpayment.php">
+    <entry file="file://$PROJECT_DIR$/Suncash.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="189" column="31" selection-end-line="264" selection-end-column="1" />
