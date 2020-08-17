@@ -19,8 +19,8 @@
  * versions in the future. If you wish to customize PrestaShop for your
  * needs please refer to http://www.prestashop.com for more information.
  *
- *  @author    Hennes Hervé <contact@h-hennes.fr>
- *  @copyright 2013-2017 Hennes Hervé
+ *  @author    Rosmel Torres <contact@h-hennes.fr>
+ *  @copyright 2013-2017 RosmelTorres
  *  @license   http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  *  http://www.h-hennes.fr/blog/
  */
@@ -31,14 +31,14 @@ if (!defined('_PS_VERSION_')) {
     exit;
 }
 
-class SunCashPayment extends PaymentModule
+class Suncash extends PaymentModule
 {
     protected $_html;
 
     public function __construct()
     {
         $this->author    = 'aquiel';
-        $this->name      = 'suncashpayment';
+        $this->name      = 'Suncash';
         $this->tab       = 'payment_gateways';
         $this->version   = '0.1.0';
         $this->bootstrap = true;
@@ -50,10 +50,10 @@ class SunCashPayment extends PaymentModule
 
     public function install()
     {
-        if (!parent::install()
+        if (!parent::install() 
             || !$this->registerHook('paymentOptions')
             || !$this->registerHook('paymentReturn')
-        ) {
+            ) {
             return false;
         }
         return true;
@@ -61,7 +61,7 @@ class SunCashPayment extends PaymentModule
 
     /**
      * Affichage du paiement dans le checkout
-     * PS 17
+     * PS 17 
      * @param type $params
      * @return type
      */
@@ -73,7 +73,7 @@ class SunCashPayment extends PaymentModule
 
         //Paiement Standard sans passerelle
         $standardPayment = new PaymentOption();
-
+        
         //Inputs supplémentaires (utilisé idéalement pour des champs cachés )
         $inputs = [
             [
@@ -88,30 +88,30 @@ class SunCashPayment extends PaymentModule
             ],
         ];
         $standardPayment->setModuleName($this->name)
-            //Logo de paiement
-            ->setLogo($this->context->link->getBaseLink().'/modules/suncash/views/img/logo.png')
-            ->setInputs($inputs)
-            //->setBinary() Utilisé si une éxécution de binaire est nécessaires ( module atos par ex )
-            //Texte de description
-            ->setCallToActionText($this->l('Suncash Payment Example'))
-            ->setAction($this->context->link->getModuleLink($this->name, 'validation', array(), true))
-            //Texte informatif supplémentaire
-            ->setAdditionalInformation($this->fetch('module:suncash/views/templates/hook/displayPayment.tpl'));
+                //Logo de paiement
+                ->setLogo($this->context->link->getBaseLink().'/modules/Suncash/views/img/logo.png')
+                ->setInputs($inputs)
+                //->setBinary() Utilisé si une éxécution de binaire est nécessaires ( module atos par ex )
+                //Texte de description
+                ->setCallToActionText($this->l('Suncash Payment Example'))
+                ->setAction($this->context->link->getModuleLink($this->name, 'validation', array(), true))
+                //Texte informatif supplémentaire
+                ->setAdditionalInformation($this->fetch('module:Suncash/views/templates/hook/displayPayment.tpl'));
 
-
+        
         //Paiement API type bancaire
 
         //Variables pour paiement API
         $this->smarty->assign(
-            $this->getPaymentApiVars()
+                $this->getPaymentApiVars()
         );
 
         $apiPayement = new PaymentOption();
         $apiPayement->setModuleName($this->name)
-            ->setCallToActionText($this->l('Suncash Sample payement module (like CB )'))
-            //Définition d'un formulaire personnalisé
-            ->setForm($this->fetch('module:suncash/views/templates/hook/payment_api_form.tpl'))
-            ->setAdditionalInformation($this->fetch('module:suncash/views/templates/hook/displayPaymentApi.tpl'));
+                ->setCallToActionText($this->l('Suncash Sample payement module (like CB )'))
+                //Définition d'un formulaire personnalisé
+                ->setForm($this->fetch('module:Suncash/views/templates/hook/payment_api_form.tpl'))
+                ->setAdditionalInformation($this->fetch('module:Suncash/views/templates/hook/displayPaymentApi.tpl'));
 
         return [$standardPayment, $apiPayement];
     }
@@ -123,30 +123,30 @@ class SunCashPayment extends PaymentModule
     public function getPaymentApiVars()
     {
         return  [
-            'payment_url' => Configuration::get('PAYMENT_API_URL'),
-            'success_url' => Configuration::get('PAYMENT_API_URL_SUCESS'),
-            'error_url' => Configuration::get('PAYMENT_API_URL_ERROR'),
-            'id_cart' => $this->context->cart->id,
-            'cart_total' =>  $this->context->cart->getOrderTotal(true, Cart::BOTH),
-            'id_customer' => $this->context->cart->id_customer,
+             'payment_url' => Configuration::get('PAYMENT_API_URL'),
+             'success_url' => Configuration::get('PAYMENT_API_URL_SUCESS'),
+             'error_url' => Configuration::get('PAYMENT_API_URL_ERROR'),
+             'id_cart' => $this->context->cart->id,
+             'cart_total' =>  $this->context->cart->getOrderTotal(true, Cart::BOTH),
+             'id_customer' => $this->context->cart->id_customer,
         ];
     }
-
+    
     /**
      * Affichage du message de confirmation de la commande
      * @param type $params
      * @return type
      */
-    public function hookDisplayPaymentReturn($params)
+    public function hookDisplayPaymentReturn($params) 
     {
         if (!$this->active) {
             return;
         }
-
+        
         $this->smarty->assign(
             $this->getTemplateVars()
-        );
-        return $this->fetch('module:suncash/views/templates/hook/payment_return.tpl');
+            );
+        return $this->fetch('module:Suncash/views/templates/hook/payment_return.tpl');
     }
 
     /**
@@ -176,7 +176,7 @@ class SunCashPayment extends PaymentModule
         return $this->displayConfirmation($this->l('Configuration updated with success'));
     }
 
-    /**
+     /**
      * Formulaire de configuration admin
      */
     public function renderForm()
@@ -189,14 +189,14 @@ class SunCashPayment extends PaymentModule
                 ],
                 'description' => $this->l('Sample configuration form'),
                 'input' => [
-                    [
+                   [
                         'type' => 'text',
                         'label' => $this->l('Payment api url'),
                         'name' => 'PAYMENT_API_URL',
                         'required' => true,
                         'empty_message' => $this->l('Please fill the payment api url'),
-                    ],
-                    [
+                   ],
+                   [
                         'type' => 'text',
                         'label' => $this->l('Payment api success url'),
                         'name' => 'PAYMENT_API_URL_SUCESS',
@@ -216,14 +216,14 @@ class SunCashPayment extends PaymentModule
                     'class' => 'button btn btn-default pull-right',
                 ],
             ],
-        ];
+            ];
 
         $helper = new HelperForm();
         $helper->show_toolbar = false;
         $helper->default_form_language = (int)Configuration::get('PS_LANG_DEFAULT');
         $helper->allow_employee_form_lang = Configuration::get('PS_BO_ALLOW_EMPLOYEE_FORM_LANG') ? Configuration::get('PS_BO_ALLOW_EMPLOYEE_FORM_LANG') : 0;
-        $helper->id = 'hhpayment';
-        $helper->identifier = 'hhpayment';
+        $helper->id = 'Suncash';
+        $helper->identifier = 'Suncash';
         $helper->submit_action = 'SubmitPaymentConfiguration';
         $helper->currentIndex = $this->context->link->getAdminLink('AdminModules', false).'&configure='.$this->name.'&tab_module='.$this->tab.'&module_name='.$this->name;
         $helper->token = Tools::getAdminTokenLite('AdminModules');
