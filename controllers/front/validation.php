@@ -25,7 +25,7 @@
  *  http://www.h-hennes.fr/blog/
  */
 
-class hhpaymentvalidationModuleFrontController extends ModuleFrontController
+class suncashvalidationModuleFrontController extends ModuleFrontController
 {
 
     /**
